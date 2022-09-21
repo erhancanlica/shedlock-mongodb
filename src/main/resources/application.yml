@@ -1,0 +1,30 @@
+server:
+  port: ${SERVER_PORT:9000}
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:8000}
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017}
+      database: ${MONGO_DBNAME:local}
+  application:
+    name: '@application.name@'
+
+kafka-consumer:
+  kafka:
+    topic: ${MESSAGE_TOPIC:message}
+    concurrency: ${CONCURRENCY:4}
+    maxPoolRecord: ${MAX_POOL_RECORD:10}
+    consumerGroupId: ${CONSUMER_GROUP_ID:aaroen-shedlock}
+    bootstrapServers: ${BOOTSTRAP_SERVERS:localhost:29092}
+    autoCommitInterval: ${AUTO_COMMIT_INTERVAL:500}
